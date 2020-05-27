@@ -1,0 +1,2 @@
+rootProject.name='Reusable Adapter Sample'
+include ':app'

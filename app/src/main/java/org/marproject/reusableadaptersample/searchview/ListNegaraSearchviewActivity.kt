@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_list_negara_searchview.*
 import kotlinx.android.synthetic.main.item_negara.view.*
 import org.marproject.reusableadaptersample.Negara
@@ -27,7 +26,7 @@ class ListNegaraSearchviewActivity : AppCompatActivity() {
         this.title = "Searchview Sample"
 
         // init adapter
-        adapter = ReusableAdapter(R.layout.item_negara, true)
+        adapter = ReusableAdapter(this)
 
         // create data
         val listNegara = listOf(
@@ -35,7 +34,8 @@ class ListNegaraSearchviewActivity : AppCompatActivity() {
             Negara("Malaysia","Kuala Lumpur"),
             Negara("Thailand","Bangkok"),
             Negara("Vietnam","Hanoi"),
-            Negara("Filipina","Manila")
+            Negara("Filipina","Manila"),
+            Negara("Australia","Canberra")
         )
 
         // create adapter callback for init component
@@ -50,16 +50,13 @@ class ListNegaraSearchviewActivity : AppCompatActivity() {
             }
         }
 
-        // set data and callback adapter
-        adapter.apply {
-            this.addData(listNegara)
-            this.adapterCallback(adapterCallback)
-        }
-
-        // create and set adapter on recyclerview
-        val recyclerview = rv_negara
-        recyclerview.adapter = adapter
-        recyclerview.layoutManager = LinearLayoutManager(this)
+        // setup adapter
+        adapter.filterable()
+            .adapterCallback(adapterCallback)
+            .setLayout(R.layout.item_negara)
+            .addData(listNegara)
+            .isVerticalView()
+            .build(rv_negara)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

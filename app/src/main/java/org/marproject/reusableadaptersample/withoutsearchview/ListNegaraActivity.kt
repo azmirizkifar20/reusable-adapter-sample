@@ -9,8 +9,8 @@ import kotlinx.android.synthetic.main.activity_list_negara.*
 import kotlinx.android.synthetic.main.item_negara.view.*
 import org.marproject.reusableadaptersample.Negara
 import org.marproject.reusableadaptersample.R
-import org.marproject.reusablerecyclerviewadapter.AdapterCallback
 import org.marproject.reusablerecyclerviewadapter.ReusableAdapter
+import org.marproject.reusablerecyclerviewadapter.interfaces.AdapterCallback
 
 class ListNegaraActivity : AppCompatActivity() {
 
@@ -42,7 +42,7 @@ class ListNegaraActivity : AppCompatActivity() {
         // create adapter
         val adapter = ReusableAdapter<Negara>(R.layout.item_negara).apply {
             this.addData(listNegara)
-            this.adapterCallback = adapterCallback
+            this.adapterCallback(adapterCallback)
         }
 
         // create and set adapter on recyclerview

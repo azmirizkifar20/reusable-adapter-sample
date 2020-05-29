@@ -11,8 +11,8 @@ import kotlinx.android.synthetic.main.activity_list_negara_searchview.*
 import kotlinx.android.synthetic.main.item_negara.view.*
 import org.marproject.reusableadaptersample.Negara
 import org.marproject.reusableadaptersample.R
-import org.marproject.reusablerecyclerviewadapter.AdapterCallback
 import org.marproject.reusablerecyclerviewadapter.ReusableAdapter
+import org.marproject.reusablerecyclerviewadapter.interfaces.AdapterCallback
 
 class ListNegaraSearchviewActivity : AppCompatActivity() {
 
@@ -53,7 +53,7 @@ class ListNegaraSearchviewActivity : AppCompatActivity() {
         // set data and callback adapter
         adapter.apply {
             this.addData(listNegara)
-            this.adapterCallback = adapterCallback
+            this.adapterCallback(adapterCallback)
         }
 
         // create and set adapter on recyclerview
